@@ -1,0 +1,46 @@
+from typing import List
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        containsOne = False
+        n = len(nums)
+        for i in range(n):
+            if nums[i] == 1:
+                containsOne = True
+            if nums[i] < 1 or nums[i] > n:
+                nums[i] = 1
+        
+        
+        if containsOne == False:
+            return 1
+
+
+        for i in range(n):
+            value = abs(nums[i])
+            if n > value > 0:
+                nums[value] = - abs(nums[value])
+            if value == n:
+                nums[0] = -abs(nums[0])
+
+        print(nums)
+        for i in range(1, n):
+            if nums[i] > 0:
+                return i
+        if nums[0] > 0:
+            return n
+        
+        return n + 1
+    
+
+
+case1 = [1,2,0]
+a1 = 3
+
+sol = Solution()
+print(Solution.firstMissingPositive(sol, case1) == a1)
+
+
+a = ['999888999','999877999']
+b = '889'
+
+if b in a:
+    print('!!!!!!!!!!!!!')
